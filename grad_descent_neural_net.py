@@ -24,7 +24,6 @@ class NeuralNetwork:
         return y_hat
 
     def sigmoid(self, z):
-
         # clip z to avoid overflow errors
         z = np.clip(z, -100, 100)
 
@@ -32,7 +31,6 @@ class NeuralNetwork:
         return 1 / (1 + np.exp(-z))
     
     def sigmoid_prime(self, z):
-
         # clip z to avoid overflow errors
         z = np.clip(z, -100, 100)
 
@@ -86,7 +84,6 @@ class NeuralNetwork:
         return average_error
 
 def find_optimal_learning_rate(x, y, network, learning_rates, num_tests):
-
     # store initial parameters
     temp_input_size = network.input_size
     temp_hidden_size = network.hidden_size
@@ -132,7 +129,7 @@ def find_optimal_learning_rate(x, y, network, learning_rates, num_tests):
 ###MAIN CODE###
 
 # load the CSV file using Pandas
-df = pd.read_csv(r'C:\Users\liamd\OneDrive\Desktop\Projects\Optimizers_From_Scratch\housepricedata.csv')
+df = pd.read_csv('./housepricedata.csv')
 
 # select the columns to use as input and output data
 x = df[["LotArea", "OverallQual", "OverallCond", "TotalBsmtSF", "FullBath", "HalfBath", "BedroomAbvGr", "TotRmsAbvGrd", "Fireplaces", "GarageArea"]]
