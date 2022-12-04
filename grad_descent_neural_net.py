@@ -24,6 +24,7 @@ class NeuralNetwork:
         return y_hat
 
     def sigmoid(self, z):
+
         # clip z to avoid overflow errors
         z = np.clip(z, -100, 100)
 
@@ -31,6 +32,7 @@ class NeuralNetwork:
         return 1 / (1 + np.exp(-z))
     
     def sigmoid_prime(self, z):
+
         # clip z to avoid overflow errors
         z = np.clip(z, -100, 100)
 
@@ -83,14 +85,12 @@ class NeuralNetwork:
 
         return average_error
 
-def find_optimal_learning_rate(x, y, network, learning_rates, num_tests):
+def find_optimal_learning_rate(x, y, network, learning_rates, num_tests, epochs):
+
     # store initial parameters
     temp_input_size = network.input_size
     temp_hidden_size = network.hidden_size
     temp_output_size = network.output_size
-
-    # define the number of epochs to use for testing
-    epochs = 15
 
     # create a dictionary to store the results
     results = {}
@@ -129,7 +129,7 @@ def find_optimal_learning_rate(x, y, network, learning_rates, num_tests):
 ###MAIN CODE###
 
 # load the CSV file using Pandas
-df = pd.read_csv('./housepricedata.csv')
+df = pd.read_csv(r'C:\Users\liamd\OneDrive\Desktop\Projects\Optimizers_From_Scratch\housepricedata.csv')
 
 # select the columns to use as input and output data
 x = df[["LotArea", "OverallQual", "OverallCond", "TotalBsmtSF", "FullBath", "HalfBath", "BedroomAbvGr", "TotRmsAbvGrd", "Fireplaces", "GarageArea"]]
@@ -155,7 +155,7 @@ x_test = scaler.transform(x_test)
 nn = NeuralNetwork(x_train.shape[1], 3, y_train.shape[1])
 
 # test different learning rates to find the optimal starting learning rate
-learning_rate = find_optimal_learning_rate(x_train, y_train, nn, [1, 0.1, 0.01, 0.001], 10)
+learning_rate = find_optimal_learning_rate(x_train, y_train, nn, [1, 0.1, 0.01, 0.001], 10, 100)
 print(learning_rate)
 
 # train for n epochs with an initial learning rate set by the find_optimal_learning_rate function
