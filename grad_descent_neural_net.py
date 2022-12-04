@@ -129,7 +129,7 @@ def find_optimal_learning_rate(x, y, network, learning_rates, num_tests, epochs)
 ###MAIN CODE###
 
 # load the CSV file using Pandas
-df = pd.read_csv(r'C:\Users\liamd\OneDrive\Desktop\Projects\Optimizers_From_Scratch\housepricedata.csv')
+df = pd.read_csv('/housepricedata.csv')
 
 # select the columns to use as input and output data
 x = df[["LotArea", "OverallQual", "OverallCond", "TotalBsmtSF", "FullBath", "HalfBath", "BedroomAbvGr", "TotRmsAbvGrd", "Fireplaces", "GarageArea"]]
